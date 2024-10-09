@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import TodoList from './Components/todolist/page';
+import TodoList from '../Components/todolist/page';
 
 // Create a QueryClient instance
 const queryClient = new QueryClient();

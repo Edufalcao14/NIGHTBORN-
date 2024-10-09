@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const NAV_ITEMS = [
   { label: 'To Do List', href: '/' },
-  { label: 'Create', href: '/create' },
+  { label: 'Create', href: '/Create' },
   { label: 'Update', href: '/update' },
   { label: 'Delete', href: '/delete' }  
 ];
