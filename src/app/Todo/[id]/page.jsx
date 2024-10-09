@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { useQuery, useMutation, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Initialize a new QueryClient instance
 const queryClient = new QueryClient();
@@ -41,11 +43,27 @@ function Todo({ id }) {
       return response.json();
     },
     onSuccess: () => {
-      alert("Todo completed status updated successfully!");
-      router.push("/"); // Redirect after update
-    },
+        toast.success("Todo completed status updated successfully!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        setTimeout(() => {
+          router.push("/"); // Redirect after toast
+        }, 3500); // Delay the toast and redirect by 3 seconds
+      },
     onError: (error) => {
-      alert(`Error updating todo: ${error.message}`);
+      toast.error(`Error updating todo: ${error.message}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     },
   });
 
@@ -59,6 +77,7 @@ function Todo({ id }) {
 
   return (
     <div className="p-6 container py-24">
+      <ToastContainer /> {/* Add ToastContainer here */}
       <h1 className="text-2xl font-bold mb-4">Todo Details</h1>
       <div className="bg-white shadow-lg rounded p-4 my-5">
         <div className="flex flex-col justify-center items-center text-center">
@@ -77,14 +96,20 @@ function Todo({ id }) {
         <>
           <div className="flex flex-wrap justify-between">
             <button
-               className={`${todo.completed === true ?"bg-gray-500 text-gray-100 cursor-not-allowed"  : "bg-emerald-500 hover:bg-emerald-600 text-white"}  font-bold py-2 px-4 rounded shadow-md`}
+              className={`${todo.completed === true
+                ? "bg-gray-500 text-gray-100 cursor-not-allowed"
+                : "bg-emerald-500 hover:bg-emerald-600 text-white"
+                } font-bold py-2 px-4 rounded shadow-md`}
               onClick={() => handleSubmit(true)}
               disabled={todo.completed} // Disable if already completed
             >
               Completed
             </button>
             <button
-              className={`${todo.completed === false ?"bg-gray-500 text-gray-100 cursor-not-allowed"  : "bg-red-500 hover:bg-red-600 text-white"}  font-bold py-2 px-4 rounded shadow-md`}
+              className={`${todo.completed === false
+                ? "bg-gray-500 text-gray-100 cursor-not-allowed"
+                : "bg-red-500 hover:bg-red-600 text-white"
+                } font-bold py-2 px-4 rounded shadow-md`}
               onClick={() => handleSubmit(false)}
               disabled={!todo.completed} // Disable if not completed
             >
