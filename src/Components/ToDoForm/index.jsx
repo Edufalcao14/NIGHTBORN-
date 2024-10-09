@@ -1,14 +1,10 @@
 // TodoForm.js
 import React from "react";
 
-import { useForm } from "react-hook-form";
-
 export default function TodoForm({
   onSubmit,
   errors,
   register,
-  update,
-  handleCancelUpdate,
 }) {
   return (
     <form onSubmit={onSubmit} className="bg-white p-6 rounded-lg shadow-md">
@@ -78,16 +74,8 @@ export default function TodoForm({
           type="submit"
           className="w-[200Px] bg-emerald-600 text-white font-bold py-2 px-4 rounded hover:bg-emerald-700 transition duration-200"
         >
-          {update ? "Update Todo" : "Create Todo"}
+          Create To do
         </button>
-        {update && (
-          <button
-            onClick={handleCancelUpdate}
-            className="w-[200Px] bg-red-600 text-white font-bold py-2 px-4 rounded hover:bg-red-700 transition duration-200"
-          >
-            Cancel
-          </button>
-        )}
       </div>
       {/* Submit Button */}
     </form>
