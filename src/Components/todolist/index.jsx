@@ -3,14 +3,12 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { useTodo } from "../../app/context/TodoContext";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // TodoList Component
 const TodoList = () => {
-  const router = useRouter();
   const { setLastId } = useTodo(); // Use the context to get setLastId
 
   // Fetching todos from the API
